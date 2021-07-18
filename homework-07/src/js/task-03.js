@@ -12,3 +12,18 @@ const images = [
     alt: 'Group of Horses Running',
   },
 ];
+
+const list = document.querySelector('#gallery'); //ссылка на елемент с айди "gallery"
+
+const gallery = images.forEach(elem => { //перебераем масив обьектов 
+  list.insertAdjacentHTML('beforeend', `<li class='gallery__item'><img class='img' src = ${elem.url} alt = ${elem.alt} width = "640"></li>`);
+  //добавляем с помощью шаблонной строки тег li внутри которого тег img ,
+  //во внутерь списка с айди "gallery"
+});
+
+console.log(list); //  выводим результат на екран для проверки
+list.setAttribute("style", "list-style:none; display: flex; flex-wrap: wrap; justify-content: center;");// на елемент с айди "gallery" (у нас ето <ul>) добавляем минимальніе стили
+
+
+const img = document.querySelector('.img');//ссылка на елемент с класом "img"
+img.setAttribute("style", "display: block; margin-bottom: 10px;");// на елемент с класом "img" (у нас ето уже созданый <img>) добавляем минимальніе стили

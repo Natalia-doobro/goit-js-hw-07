@@ -15,11 +15,14 @@ const images = [
 
 const list = document.querySelector('#gallery'); //ссылка на елемент с айди "gallery"
 
-const gallery = images.forEach(elem => { //перебераем масив обьектов 
-  list.insertAdjacentHTML('beforeend', `<li class='gallery__item'><img class='img' src = ${elem.url} alt = ${elem.alt} width = "640"></li>`);
-  //добавляем с помощью шаблонной строки тег li внутри которого тег img ,
-  //во внутерь списка с айди "gallery"
-});
+const gallery = (acc, { url, alt }) => acc + `<li class='gallery__item'><img class='img' src = ${url} alt = ${alt} width = "640"></li>`;
+//калбек функцыя которая генерирует стрроку , и переносит значение елементов из images
+const photo = images.reduce(gallery, '');//переменая хранит полученую строку от  калбек функцыи
+
+list.insertAdjacentHTML('beforeend', photo);
+//добавляем с помощью шаблонной строки сгенерированую строку в переменной photo (тег li внутри которого тег img ),
+//во внутерь списка с айди "gallery"
+
 
 console.log(list); //  выводим результат на екран для проверки
 list.setAttribute("style", "list-style:none; display: flex; flex-wrap: wrap; justify-content: center;");// на елемент с айди "gallery" (у нас ето <ul>) добавляем минимальніе стили
